@@ -91,13 +91,14 @@ int main(int argc, char *argv[]) {
                 printf("COMMA , null\n");
                 break;
             }
-            case '=':
+            case '=':{
             if (*(filePtr + 1) == '=') {
             printf("EQUAL_EQUAL == null\n");
             filePtr++;
             } else
             printf("EQUAL = null\n");
             break;
+            }
             case '\n':
             currentLine += 1;
             break;
