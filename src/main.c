@@ -18,7 +18,12 @@ enum Token{
     SLASH,
     EQUAL,
     EQUAL_EQUAL,
-    BANG
+    BANG,
+    BANG_EQUAL,
+    LESS
+    LESS_EQUAL
+    GREATER
+    GREATER_EQUAL
 
 
 
@@ -112,6 +117,23 @@ int main(int argc, char *argv[]) {
             printf("BANG ! null\n");
             break;
             }
+            case '<':{
+            if (file_contents[i+1] == '=') {
+            printf("LESS_EQUAL <= null\n");
+            i++;
+            } else
+            printf("LESS < null\n");
+            break;
+            }
+            case '>':{
+            if (file_contents[i+1] == '=') {
+            printf("GREATER_EQUAL >= null\n");
+            i++;
+            } else
+            printf("GREATER > null\n");
+            break;
+            }
+
             case '\n':{
             currentLine += 1;
             break;
