@@ -174,47 +174,75 @@ int main(int argc, char *argv[])
                     break;
                 }
 
-                case'"':{
-                    int start= i+1;
-                    ++i; //escape " mark
-                    printf("STRING \"");
+                case '"':
+                {
 
-                    while(i<strlen(file_contents) && file_contents[i] !='"'){
-                    
-                    if (file_contents[i] == '\n')
-                        {
-                            currentLine++;
-                        }
-                    printf("%c", file_contents[i]);
-                        i++;
-                    }
+int start = ++i; // Move past the opening quote
+    while (i < strlen(file_contents) && file_contents[i] != '"') {
+        i++;
+    }
 
-                    if (i >= strlen(file_contents)) {
+    if (i >= strlen(file_contents)) {
         // Unterminated string error
         fprintf(stderr, "[line %lld] Error: Unterminated string.\n", currentLine);
         error = 1;
-        
-    } else {
-        printf("\" ");
+        break;
     }
-                            
-                                                  
 
-                    for(int j=start; j<i; j++){
-                    printf("%c", file_contents[j]);
-                    }
-                    printf("\n");
-                    
-break;
-                }
+    // Extract the string between the quotes
+    int length = i - start;
+    char str[length + 1];
+    strncpy(str, &file_contents[start], length);
+    str[length] = '\0'; // Null-terminate the string
 
-                case' ':
+    // Print the STRING token with correct formatting
+    printf("STRING \"%s\" %s\n", str, str);
+    break;
+}
+
+
+                    // int start = i + 1;
+                    // ++i; // escape " mark
+                    // printf("STRING \"");
+
+                    // while (i < strlen(file_contents) && file_contents[i] != '"')
+                    // {
+
+                    //     if (file_contents[i] == '\n')
+                    //     {
+                    //         currentLine++;
+                    //     }
+                    //     printf("%c", file_contents[i]);
+                    //     i++;
+                    // }
+
+                    // if (i >= strlen(file_contents))
+                    // {
+                    //     // Unterminated string error
+                    //     fprintf(stderr, "[line %lld] Error: Unterminated string.\n", currentLine);
+                    //     error = 1;
+                    // }
+                    // else
+                    // {
+                    //     printf("\" ");
+                    // }
+
+                    // for (int j = start; j < i; j++)
+                    // {
+                    //     printf("%c", file_contents[j]);
+                    // }
+                    // printf("\n");
+
+                    // break;
+                //}
+
+                case ' ':
                 {
-                         break;
+                    break;
                 }
-                case'\t':
+                case '\t':
                 {
-                   break;
+                    break;
                 }
 
                 case '\n':
