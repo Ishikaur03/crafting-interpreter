@@ -9,6 +9,13 @@ enum Token{
     RIGHT_PAREN,
     LEFT_BRACE,
     RIGHT_BRACE,
+    COMMA,
+    STAR,
+    DOT,
+    PLUS,
+    MINUS,
+    SEMICOLON,
+    SLASH,
 
 };
 
@@ -50,6 +57,30 @@ int main(int argc, char *argv[]) {
             }
             case'}':{
                 printf("RIGHT_BRACE } null\n");
+                break;
+            }
+            case'.':{
+                printf("DOT . null\n");
+                break;
+            }
+            case'*':{
+                printf("STAR * null\n");
+                break;
+            }
+            case'-':{
+                printf("MINUS - null\n");
+                break;
+            }
+            case'+':{
+                printf("PLUS + null\n");
+                break;
+            }
+            case'/':{
+                printf("SLASH / null\n");
+                break;
+            }
+            case';':{
+                printf("SEMICOLON ; null\n");
                 break;
             }
            }
