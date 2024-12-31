@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
                 break;
             }
             default:{
-                printf(stderr, "[line 1] Error: Unexpected character: %c\n", file_contents[i]);
+               fprintf(stderr, "[line 1] Error: Unexpected character: %c\n", file_contents[i]);
                 error = 1;
             }
 
