@@ -92,8 +92,8 @@ int main(int argc, char *argv[]) {
             case'/':{
                 if(file_contents[i+1]== '/'){
                 printf("EOF  null\n");
-                i++;
-                }
+                break; 
+                }else 
                 printf("SLASH / null\n");
                 break;
             }
