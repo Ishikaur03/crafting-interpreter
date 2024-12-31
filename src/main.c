@@ -99,9 +99,10 @@ int main(int argc, char *argv[]) {
             printf("EQUAL = null\n");
             break;
             }
-            case '\n':
+            case '\n':{
             currentLine += 1;
             break;
+            }
             default:{
                fprintf(stderr, "[line %lld] Error: Unexpected character: %c\n",currentLine, file_contents[i]);
                 error = 1;
