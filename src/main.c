@@ -4,7 +4,8 @@
 
 char *read_file_contents(const char *filename);
 
-enum Token{
+enum Token
+{
     LEFT_PAREN,
     RIGHT_PAREN,
     LEFT_BRACE,
@@ -25,142 +26,188 @@ enum Token{
     GREATER,
     GREATER_EQUAL,
 
-
-
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     // Disable output buffering
     setbuf(stdout, NULL);
     setbuf(stderr, NULL);
 
-    if (argc < 3) {
+    if (argc < 3)
+    {
         fprintf(stderr, "Usage: ./your_program tokenize <filename>\n");
         return 1;
     }
 
     const char *command = argv[1];
 
-    if (strcmp(command, "tokenize") == 0) {
+    if (strcmp(command, "tokenize") == 0)
+    {
         // You can use print statements as follows for debugging, they'll be visible when running tests.
-        //fprintf(stderr, "Logs from your program will appear here!\n");
-        
+        // fprintf(stderr, "Logs from your program will appear here!\n");
+
         char *file_contents = read_file_contents(argv[2]);
         char *filePtr = file_contents;
 
-            long int currentLine = 1;
-
+        long int currentLine = 1;
 
         int error = 0;
-        if (strlen(file_contents) > 0) {
-           // fprintf(stderr, "Scanner not implemented\n");
-           // exit(1);
-           for(int i=0; i<strlen(file_contents); i++){
-            switch(file_contents[i]){
-                case'(':{
-                printf("LEFT_PAREN ( null\n");
-                break;
-            }
-                case')':{
-                printf("RIGHT_PAREN ) null\n");
-                break;
-            }
-            case'{':{
-                printf("LEFT_BRACE { null\n");
-                break;
-            }
-            case'}':{
-                printf("RIGHT_BRACE } null\n");
-                break;
-            }
-            case'.':{
-                printf("DOT . null\n");
-                break;
-            }
-            case'*':{
-                printf("STAR * null\n");
-                break;
-            }
-            case'-':{
-                printf("MINUS - null\n");
-                break;
-            }
-            case'+':{
-                printf("PLUS + null\n");
-                break;
-            }
-            case'/':{
-                if(file_contents[i+1]== '/'){
-                while (i < strlen(file_contents) && file_contents[i] != '\n') {
-                i++;
-             }
-                } else 
-                printf("SLASH / null\n");
-                break;
-            }
-            case';':{
-                printf("SEMICOLON ; null\n");
-                break;
-            }
-            case',':{
-                printf("COMMA , null\n");
-                break;
-            }
-            case '=':{
-            if (file_contents[i+1] == '=') {
-            printf("EQUAL_EQUAL == null\n");
-            i++;
-            } else
-            printf("EQUAL = null\n");
-            break;
-            }
-            case '!':{
-            if (file_contents[i+1] == '=') {
-            printf("BANG_EQUAL != null\n");
-            i++;
-            } else
-            printf("BANG ! null\n");
-            break;
-            }
-            case '<':{
-            if (file_contents[i+1] == '=') {
-            printf("LESS_EQUAL <= null\n");
-            i++;
-            } else
-            printf("LESS < null\n");
-            break;
-            }
-            case '>':{
-            if (file_contents[i+1] == '=') {
-            printf("GREATER_EQUAL >= null\n");
-            i++;
-            } else
-            printf("GREATER > null\n");
-            break;
-            }
+        if (strlen(file_contents) > 0)
+        {
+            // fprintf(stderr, "Scanner not implemented\n");
+            // exit(1);
+            for (int i = 0; i < strlen(file_contents); i++)
+            {
+                switch (file_contents[i])
+                {
+                case '(':
+                {
+                    printf("LEFT_PAREN ( null\n");
+                    break;
+                }
+                case ')':
+                {
+                    printf("RIGHT_PAREN ) null\n");
+                    break;
+                }
+                case '{':
+                {
+                    printf("LEFT_BRACE { null\n");
+                    break;
+                }
+                case '}':
+                {
+                    printf("RIGHT_BRACE } null\n");
+                    break;
+                }
+                case '.':
+                {
+                    printf("DOT . null\n");
+                    break;
+                }
+                case '*':
+                {
+                    printf("STAR * null\n");
+                    break;
+                }
+                case '-':
+                {
+                    printf("MINUS - null\n");
+                    break;
+                }
+                case '+':
+                {
+                    printf("PLUS + null\n");
+                    break;
+                }
+                case '/':
+                {
+                    if (file_contents[i + 1] == '/')
+                    {
+                        while (i < strlen(file_contents) && file_contents[i] != '\n')
+                        {
+                            i++;
+                        }
+                        if (i < strlen(file_contents) && file_contents[i] == '\n')
+                        {
+                            currentLine++;
+                        }
+                    }
+                    else
+                        printf("SLASH / null\n");
+                    break;
+                }
+                case ';':
+                {
+                    printf("SEMICOLON ; null\n");
+                    break;
+                }
+                case ',':
+                {
+                    printf("COMMA , null\n");
+                    break;
+                }
+                case '=':
+                {
+                    if (file_contents[i + 1] == '=')
+                    {
+                        printf("EQUAL_EQUAL == null\n");
+                        i++;
+                    }
+                    else
+                        printf("EQUAL = null\n");
+                    break;
+                }
+                case '!':
+                {
+                    if (file_contents[i + 1] == '=')
+                    {
+                        printf("BANG_EQUAL != null\n");
+                        i++;
+                    }
+                    else
+                        printf("BANG ! null\n");
+                    break;
+                }
+                case '<':
+                {
+                    if (file_contents[i + 1] == '=')
+                    {
+                        printf("LESS_EQUAL <= null\n");
+                        i++;
+                    }
+                    else
+                        printf("LESS < null\n");
+                    break;
+                }
+                case '>':
+                {
+                    if (file_contents[i + 1] == '=')
+                    {
+                        printf("GREATER_EQUAL >= null\n");
+                        i++;
+                    }
+                    else
+                        printf("GREATER > null\n");
+                    break;
+                }
 
-            case '\n':{
-            currentLine += 1;
-            break;
-            }
-            default:{
-               fprintf(stderr, "[line %lld] Error: Unexpected character: %c\n",currentLine, file_contents[i]);
-                error = 1;
-            }
+                case'   ':
+                {
+                    while(i<strlen(file_contents) && file_contents[i] !='\n'){
+                    i++;
+                }
+                break;
+                }
 
-           }
-        }
+                case '\n':
+                {
+                    currentLine += 1;
+                    break;
+                }
+                default:
+                {
+                    fprintf(stderr, "[line %lld] Error: Unexpected character: %c\n", currentLine, file_contents[i]);
+                    error = 1;
+                }
+                }
+            }
         }
         printf("EOF  null\n"); // Placeholder, remove this line when implementing the scanner
-        
-        free(file_contents);
-    if(error){
-        exit(65);
-    }else {
-        exit(0);
-    }
 
-    } else {
+        free(file_contents);
+        if (error)
+        {
+            exit(65);
+        }
+        else
+        {
+            exit(0);
+        }
+    }
+    else
+    {
         fprintf(stderr, "Unknown command: %s\n", command);
         return 1;
     }
@@ -168,9 +215,11 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-char *read_file_contents(const char *filename) {
+char *read_file_contents(const char *filename)
+{
     FILE *file = fopen(filename, "r");
-    if (file == NULL) {
+    if (file == NULL)
+    {
         fprintf(stderr, "Error reading file: %s\n", filename);
         return NULL;
     }
@@ -180,14 +229,16 @@ char *read_file_contents(const char *filename) {
     rewind(file);
 
     char *file_contents = malloc(file_size + 1);
-    if (file_contents == NULL) {
+    if (file_contents == NULL)
+    {
         fprintf(stderr, "Memory allocation failed\n");
         fclose(file);
         return NULL;
     }
 
     size_t bytes_read = fread(file_contents, 1, file_size, file);
-    if (bytes_read < file_size) {
+    if (bytes_read < file_size)
+    {
         fprintf(stderr, "Error reading file contents\n");
         free(file_contents);
         fclose(file);
