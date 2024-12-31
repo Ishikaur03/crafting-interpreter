@@ -189,13 +189,13 @@ int start = ++i; // Move past the opening quote
         break;
     }
 
-    // Extract the string between the quotes
+    
     int length = i - start;
     char str[length + 1];
     strncpy(str, &file_contents[start], length);
     str[length] = '\0'; // Null-terminate the string
 
-    // Print the STRING token with correct formatting
+    
     printf("STRING \"%s\" %s\n", str, str);
     break;
 }
