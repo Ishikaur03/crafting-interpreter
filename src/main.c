@@ -173,12 +173,19 @@ int main(int argc, char *argv[])
                     break;
                 }
 
-                case'   ':
+                case' ':
                 {
                     while(i<strlen(file_contents) && file_contents[i] !='\n'){
                     i++;
                 }
                 break;
+                }
+                case'\t':
+                {
+                    while(i<strlen(file_contents) && file_contents[i] !='\n'){
+                    i++;
+                }
+                    break;
                 }
 
                 case '\n':
