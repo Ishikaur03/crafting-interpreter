@@ -28,10 +28,10 @@ int main(int argc, char *argv[]) {
            // exit(1);
            for(int i=0; i<strlen(file_contents); i++){
             if(file_contents[i]=='('){
-                printf("LEFT_PAREN ( null \n");
+                printf("LEFT_PAREN ( null\n");
             }
             else if(file_contents[i]==')'){
-                printf("RIGHT_PAREN ) null \n");
+                printf("RIGHT_PAREN ) null\n");
             }
            }
         } 
