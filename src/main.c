@@ -36,6 +36,10 @@ int main(int argc, char *argv[]) {
         //fprintf(stderr, "Logs from your program will appear here!\n");
         
         char *file_contents = read_file_contents(argv[2]);
+        char *filePtr = file_contents;
+
+            long int currentLine = 1;
+
 
         int error = 0;
         if (strlen(file_contents) > 0) {
@@ -87,8 +91,18 @@ int main(int argc, char *argv[]) {
                 printf("COMMA , null\n");
                 break;
             }
+            case '=':
+            if (*(filePtr + 1) == '=') {
+            printf("EQUAL_EQUAL == null\n");
+            filePtr++;
+            } else
+            printf("EQUAL = null\n");
+            break;
+            case '\n':
+            currentLine += 1;
+            break;
             default:{
-               fprintf(stderr, "[line 1] Error: Unexpected character: %c\n", file_contents[i]);
+               fprintf(stderr, "[line %lld] Error: Unexpected character: %c\n",currentLine, file_contents[i]);
                 error = 1;
             }
 
