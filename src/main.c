@@ -92,9 +92,9 @@ int main(int argc, char *argv[]) {
                 break;
             }
             case '=':{
-            if (*(filePtr + 1) == '=') {
+            if (file_contents[i+1] == '=') {
             printf("EQUAL_EQUAL == null\n");
-            filePtr++;
+            i++;
             } else
             printf("EQUAL = null\n");
             break;
