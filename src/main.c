@@ -16,6 +16,11 @@ enum Token{
     MINUS,
     SEMICOLON,
     SLASH,
+    EQUAL,
+    EQUAL_EQUAL,
+    BANG
+
+
 
 };
 
@@ -97,6 +102,14 @@ int main(int argc, char *argv[]) {
             i++;
             } else
             printf("EQUAL = null\n");
+            break;
+            }
+            case '!':{
+            if (file_contents[i+1] == '=') {
+            printf("BANG_EQUAL != null\n");
+            i++;
+            } else
+            printf("BANG ! null\n");
             break;
             }
             case '\n':{
