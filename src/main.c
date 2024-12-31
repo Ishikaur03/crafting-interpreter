@@ -201,8 +201,9 @@ int main(int argc, char *argv[])
                                                   
 
                     for(int j=start; j<i; j++){
-                    printf("%c\n", file_contents[j]);
+                    printf("%c", file_contents[j]);
                     }
+                    printf("\n");
                     
 break;
                 }
