@@ -175,31 +175,35 @@ int main(int argc, char *argv[])
                 }
 
                 case'"':{
-                    int start = ++i; //escape " mark
+                    int start= i+1;
+                    ++i; //escape " mark
+                    printf("STRING \"");
+
                     while(i<strlen(file_contents) && file_contents[i] !='"'){
-                        i++;
-                    if (i < strlen(file_contents) && file_contents[i] == '\n')
+                    
+                    if (file_contents[i] == '\n')
                         {
                             currentLine++;
                         }
-                    
+                    printf("%c", file_contents[i]);
+                        i++;
                     }
-                    printf("STRING \"");
-                for(int j=0; j<i; j++){
-                    printf("%c", file_contents[j]);
-                }
-                    
-                    printf("\"");
 
-                    for(int j=0; j<i; j++){
-                    printf("%c\n", file_contents[j]);
-                    }
                     if (i >= strlen(file_contents)) {
         // Unterminated string error
         fprintf(stderr, "[line %lld] Error: Unterminated string.\n", currentLine);
         error = 1;
         
+    } else {
+        printf("\"");
     }
+                            
+                                                  
+
+                    for(int j=start; j<i; j++){
+                    printf("%c\n", file_contents[j]);
+                    }
+                    
 break;
                 }
 
