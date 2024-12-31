@@ -7,6 +7,9 @@ char *read_file_contents(const char *filename);
 enum Token{
     LEFT_PAREN,
     RIGHT_PAREN,
+    LEFT_BRACE,
+    RIGHT_BRACE,
+
 };
 
 int main(int argc, char *argv[]) {
@@ -39,6 +42,14 @@ int main(int argc, char *argv[]) {
             }
                 case')':{
                 printf("RIGHT_PAREN ) null\n");
+                break;
+            }
+            case'{':{
+                printf("LEFT_BRACE { null\n");
+                break;
+            }
+            case'}':{
+                printf("RIGHT_BRACE } null\n");
                 break;
             }
            }
