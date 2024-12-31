@@ -83,6 +83,10 @@ int main(int argc, char *argv[]) {
                 printf("SEMICOLON ; null\n");
                 break;
             }
+            case',':{
+                printf("COMMA , null\n");
+                break;
+            }
            }
         }
         }
