@@ -220,10 +220,13 @@ int main(int argc, char *argv[])
                 case '8':
                 case '9':{
                     int is_decimal = 0;
-                    int start =i;
+                    int start = i;
                     while(i<strlen(file_contents) && (isdigit(file_contents[i])) || (file_contents[i]=='.')){
                         if(file_contents[i]=='.'){
                             is_decimal = 1;
+                            if(file_contents[i+1]=='0'){
+                                break;
+                            }
                         }
                         i++;                        
                     }
