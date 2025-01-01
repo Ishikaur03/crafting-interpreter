@@ -223,15 +223,18 @@ int main(int argc, char *argv[])
                     int start = i;
                     while(i<strlen(file_contents)){
                         if(file_contents[i]=='.'){
+                            if (is_decimal)
+        {
+            // If a second '.' is found, stop parsing
+            break;
+        }
                             is_decimal = 1;
-         if(file_contents[i+1]=='0'){
-            is_decimal = 0;
-         }
-                                }
+                                        }
                         i++;                        
                     }
                     int length = i-start;
                     char *number = malloc(length + 1);
+                     
                                         
 
                         strncpy(number, &file_contents[start],length);
@@ -240,28 +243,31 @@ int main(int argc, char *argv[])
     // Check if the number is decimal or integer
     if (is_decimal)
     {
-    //         int j = length - 1;
-    // while (j > 0 && number[j] == '0')
-    // {
-    //     j--;
-    // }
+            char *original_number = strndup(&file_contents[start], length);
 
-    // // If the last character is '.', add '0' to make it a valid decimal
-    // if (number[j] == '.')
-    // {
-    //     number[j + 1] = '0';
-    //     number[j + 2] = '\0';
-    // }
-    // else
-    // {
-    //     number[j + 1] = '\0';
-    // }
+            int j = length - 1;
+    while (j > 0 && number[j] == '0')
+    {
+        j--;
+    }
+
+    // If the last character is '.', add '0' to make it a valid decimal
+    if (number[j] == '.')
+    {
+        number[j + 1] = '0';
+        number[j + 2] = '\0';
+    }
+    else
+    {
+        number[j + 1] = '\0';
+    }
 
                             
 
     
     // }
-        printf("NUMBER %s %s\n", number, number);
+        printf("NUMBER %s %s\n", original_number, number);
+        free(original_number);
     }
     else
     {
