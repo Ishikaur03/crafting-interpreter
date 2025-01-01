@@ -221,9 +221,12 @@ int main(int argc, char *argv[])
                 case '9':{
                     int is_decimal = 0;
                     int start = i;
-                    while(i<strlen(file_contents) && (isdigit(file_contents[i])) || (file_contents[i]=='.')){
+                    while(i<strlen(file_contents)){
                         if(file_contents[i]=='.'){
                             is_decimal = 1;
+         if(file_contents[i+1]=='0'){
+            is_decimal = 0;
+         }
                                 }
                         i++;                        
                     }
@@ -237,29 +240,29 @@ int main(int argc, char *argv[])
     // Check if the number is decimal or integer
     if (is_decimal)
     {
-            int j = length - 1;
-    while (j > 0 && number[j] == '0')
-    {
-        j--;
-    }
+    //         int j = length - 1;
+    // while (j > 0 && number[j] == '0')
+    // {
+    //     j--;
+    // }
 
-    // If the last character is '.', add '0' to make it a valid decimal
-    if (number[j] == '.')
-    {
-        number[j + 1] = '0';
-        number[j + 2] = '\0';
-    }
-    else
-    {
-        number[j + 1] = '\0';
-    }
+    // // If the last character is '.', add '0' to make it a valid decimal
+    // if (number[j] == '.')
+    // {
+    //     number[j + 1] = '0';
+    //     number[j + 2] = '\0';
+    // }
+    // else
+    // {
+    //     number[j + 1] = '\0';
+    // }
 
-                 printf("NUMBER %s %s\n", number, number);
-                   
+                            
 
     
+    // }
+        printf("NUMBER %s %s\n", number, number);
     }
-    
     else
     {
         printf("NUMBER %s %s.0\n", number, number); // Add .0 for non-decimals
