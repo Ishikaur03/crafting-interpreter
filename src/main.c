@@ -225,7 +225,9 @@ int main(int argc, char *argv[])
                         if(file_contents[i]=='.'){
                             is_decimal = 1;
                             if(file_contents[i+1]=='0'){
+                                is_decimal=0;
                                 break;
+
                             }
                         }
                         i++;                        
