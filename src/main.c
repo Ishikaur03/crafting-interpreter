@@ -177,65 +177,28 @@ int main(int argc, char *argv[])
                 case '"':
                 {
 
-int start = ++i; // Move past the opening quote
-    while (i < strlen(file_contents) && file_contents[i] != '"') {
-        i++;
-    }
+                    int start = ++i; // Move past the opening quote
+                    while (i < strlen(file_contents) && file_contents[i] != '"')
+                    {
+                        i++;
+                    }
 
-    if (i >= strlen(file_contents)) {
-        // Unterminated string error
-        fprintf(stderr, "[line %lld] Error: Unterminated string.\n", currentLine);
-        error = 1;
-        break;
-    }
+                    if (i >= strlen(file_contents))
+                    {
+                        // Unterminated string error
+                        fprintf(stderr, "[line %lld] Error: Unterminated string.\n", currentLine);
+                        error = 1;
+                        break;
+                    }
 
-    
-    int length = i - start;
-    char str[length + 1];
-    strncpy(str, &file_contents[start], length);
-    str[length] = '\0'; // Null-terminate the string
+                    int length = i - start;
+                    char str[length + 1];
+                    strncpy(str, &file_contents[start], length);
+                    str[length] = '\0'; // Null-terminate the string
 
-    
-    printf("STRING \"%s\" %s\n", str, str);
-    break;
-}
-
-
-                    // int start = i + 1;
-                    // ++i; // escape " mark
-                    // printf("STRING \"");
-
-                    // while (i < strlen(file_contents) && file_contents[i] != '"')
-                    // {
-
-                    //     if (file_contents[i] == '\n')
-                    //     {
-                    //         currentLine++;
-                    //     }
-                    //     printf("%c", file_contents[i]);
-                    //     i++;
-                    // }
-
-                    // if (i >= strlen(file_contents))
-                    // {
-                    //     // Unterminated string error
-                    //     fprintf(stderr, "[line %lld] Error: Unterminated string.\n", currentLine);
-                    //     error = 1;
-                    // }
-                    // else
-                    // {
-                    //     printf("\" ");
-                    // }
-
-                    // for (int j = start; j < i; j++)
-                    // {
-                    //     printf("%c", file_contents[j]);
-                    // }
-                    // printf("\n");
-
-                    // break;
-                //}
-
+                    printf("STRING \"%s\" %s\n", str, str);
+                    break;
+                }            
                 case ' ':
                 {
                     break;
@@ -244,6 +207,48 @@ int start = ++i; // Move past the opening quote
                 {
                     break;
                 }
+
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':{
+                    int is_decimal = 0;
+                    int start =i;
+                    while(i<strlen(file_contents) && (isdigit(file_contents[i])) || (file_contents[i]=='.')){
+                        if(file_contents[i]=='.'){
+                            is_decimal = 1;
+                        }
+                        i++;                        
+                    }
+                    int length = i-start;
+                    char *number = malloc(length + 1);
+                        strncpy(number, &file_contents[start], num_length);
+    number[num_length] = '\0';
+
+    // Check if the number is decimal or integer
+    if (is_decimal)
+    {
+        printf("NUMBER %s %s\n", number, number);
+    }
+    else
+    {
+        printf("NUMBER %s %s.0\n", number, number); // Add .0 for non-decimals
+    }
+
+    free(number);
+    i--; // Adjust index since the loop increments `i`
+    break;
+
+
+                }
+
+
 
                 case '\n':
                 {
