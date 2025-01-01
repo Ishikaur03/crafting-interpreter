@@ -221,7 +221,7 @@ int main(int argc, char *argv[])
                 case '9':{
                     int is_decimal = 0;
                     int start = i;
-                    while(i<strlen(file_contents)){
+                    while(i<strlen(file_contents)&& (isdigit(file_contents[i])) || (file_contents[i]=='.')){
                         if(file_contents[i]=='.'){
                             if (is_decimal)
         {
