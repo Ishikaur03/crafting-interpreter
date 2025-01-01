@@ -230,7 +230,7 @@ int main(int argc, char *argv[])
                     int length = i-start;
                     char *number = malloc(length + 1);
                         strncpy(number, &file_contents[start],length);
-    number[num_length] = '\0';
+    number[length] = '\0';
 
     // Check if the number is decimal or integer
     if (is_decimal)
