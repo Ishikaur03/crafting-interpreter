@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include<ctype.h>
 
 char *read_file_contents(const char *filename);
 
@@ -228,7 +229,7 @@ int main(int argc, char *argv[])
                     }
                     int length = i-start;
                     char *number = malloc(length + 1);
-                        strncpy(number, &file_contents[start], num_length);
+                        strncpy(number, &file_contents[start],length);
     number[num_length] = '\0';
 
     // Check if the number is decimal or integer
