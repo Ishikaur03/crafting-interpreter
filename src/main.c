@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include<ctype.h>
+#include <ctype.h>
 
 char *read_file_contents(const char *filename);
 
@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
 
                     printf("STRING \"%s\" %s\n", str, str);
                     break;
-                }            
+                }
                 case ' ':
                 {
                     break;
@@ -218,95 +218,95 @@ int main(int argc, char *argv[])
                 case '6':
                 case '7':
                 case '8':
-                case '9':{
+                case '9':
+                {
                     int is_decimal = 0;
                     int start = i;
-                    while(i<strlen(file_contents)&& (isdigit(file_contents[i])) || (file_contents[i]=='.')){
-                        if(file_contents[i]=='.'){
+                    while (i < strlen(file_contents) && (isdigit(file_contents[i])) || (file_contents[i] == '.'))
+                    {
+                        if (file_contents[i] == '.')
+                        {
                             if (is_decimal)
-        {
-            // If a second '.' is found, stop parsing
-            break;
-        }
+                            {
+                                // If a second '.' is found, stop parsing
+                                break;
+                            }
                             is_decimal = 1;
-                                        }
-                        i++;                        
+                        }
+                        i++;
                     }
-                    int length = i-start;
+                    int length = i - start;
                     char *number = malloc(length + 1);
-                     
-                                        
 
-                        strncpy(number, &file_contents[start],length);
-    number[length] = '\0';
+                    strncpy(number, &file_contents[start], length);
+                    number[length] = '\0';
 
-    // Check if the number is decimal or integer
-    if (is_decimal)
-    {
-            char *original_number = strndup(&file_contents[start], length);
+                    // Check if the number is decimal or integer
+                    if (is_decimal)
+                    {
+                        char *original_number = strndup(&file_contents[start], length);
 
-            int j = length - 1;
-    while (j > 0 && number[j] == '0')
-    {
-        j--;
-    }
+                        int j = length - 1;
+                        while (j > 0 && number[j] == '0')
+                        {
+                            j--;
+                        }
 
-    // If the last character is '.', add '0' to make it a valid decimal
-    if (number[j] == '.')
-    {
-        number[j + 1] = '0';
-        number[j + 2] = '\0';
-    }
-    else
-    {
-        number[j + 1] = '\0';
-    }
+                        // If the last character is '.', add '0' to make it a valid decimal
+                        if (number[j] == '.')
+                        {
+                            number[j + 1] = '0';
+                            number[j + 2] = '\0';
+                        }
+                        else
+                        {
+                            number[j + 1] = '\0';
+                        }
 
-                            
+                        // }
+                        printf("NUMBER %s %s\n", original_number, number);
+                        free(original_number);
+                    }
+                    else
+                    {
+                        printf("NUMBER %s %s.0\n", number, number); // Add .0 for non-decimals
+                    }
 
-    
-    // }
-        printf("NUMBER %s %s\n", original_number, number);
-        free(original_number);
-    }
-    else
-    {
-        printf("NUMBER %s %s.0\n", number, number); // Add .0 for non-decimals
-    }
-
-    free(number);
-    i--; // Adjust index since the loop increments `i`
-    break;
-
-
+                    free(number);
+                    i--; // Adjust index since the loop increments `i`
+                    break;
                 }
-case '_':
-      case 'a' ... 'z':
-      case 'A' ... 'Z': {
-        int size = 1;
-        for (int j = i + 1; j < strlen(file_contents) + 1; ++j) {
-          if (file_contents[j] == '_' ||
-              (file_contents[j] >= 'a' && file_contents[j] <= 'z') ||
-              (file_contents[j] >= 'A' && file_contents[j] <= 'Z') ||
-              (file_contents[j] >= '0' && file_contents[j] <= '9')) {
-            continue;
-          } else {
-            size = j - i;
-            break;
-          }
-        }
-        char *string = malloc(size);
-        memcpy(string, &file_contents[i], size);
-        fprintf(stdout, "IDENTIFIER ");
-        for (int j = 0; j < size; ++j) {
-          fprintf(stdout, "%c", string[j]);
-        }
-        fprintf(stdout, " null\n");
-        i += size - 1;
-        break;
-      }
- 
-
+                case '_':
+                case 'a' ... 'z':
+                case 'A' ... 'Z':
+                {
+                    int size = 1;
+                    for (int j = i + 1; j < strlen(file_contents) + 1; ++j)
+                    {
+                        if (file_contents[j] == '_' ||
+                            (file_contents[j] >= 'a' && file_contents[j] <= 'z') ||
+                            (file_contents[j] >= 'A' && file_contents[j] <= 'Z') ||
+                            (file_contents[j] >= '0' && file_contents[j] <= '9'))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            size = j - i;
+                            break;
+                        }
+                    }
+                    char *string = malloc(size);
+                    memcpy(string, &file_contents[i], size);
+                    fprintf(stdout, "IDENTIFIER ");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        fprintf(stdout, "%c", string[j]);
+                    }
+                    fprintf(stdout, " null\n");
+                    i += size - 1;
+                    break;
+                }
 
                 case '\n':
                 {
