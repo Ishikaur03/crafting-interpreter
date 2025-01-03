@@ -280,7 +280,32 @@ int main(int argc, char *argv[])
 
 
                 }
-
+case '_':
+      case 'a' ... 'z':
+      case 'A' ... 'Z': {
+        int size = 1;
+        for (int j = i + 1; j < strlen(file_contents) + 1; ++j) {
+          if (file_contents[j] == '_' ||
+              (file_contents[j] >= 'a' && file_contents[j] <= 'z') ||
+              (file_contents[j] >= 'A' && file_contents[j] <= 'Z') ||
+              (file_contents[j] >= '0' && file_contents[j] <= '9')) {
+            continue;
+          } else {
+            size = j - i;
+            break;
+          }
+        }
+        char *string = malloc(size);
+        memcpy(string, &file_contents[i], size);
+        fprintf(stdout, "IDENTIFIER ");
+        for (int j = 0; j < size; ++j) {
+          fprintf(stdout, "%c", string[j]);
+        }
+        fprintf(stdout, " null\n");
+        i += size - 1;
+        break;
+      }
+ 
 
 
                 case '\n':
