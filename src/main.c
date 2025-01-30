@@ -30,6 +30,41 @@ enum Token
 
 };
 
+// Add this structure and initialization before the main tokenize logic
+struct KeywordMap {
+    char* word;
+    char* type;
+} keywords[] = {
+    {"and", "AND"},
+    {"class", "CLASS"},
+    {"else", "ELSE"},
+    {"false", "FALSE"},
+    {"for", "FOR"},
+    {"fun", "FUN"},
+    {"if", "IF"},
+    {"nil", "NIL"},
+    {"or", "OR"},
+    {"print", "PRINT"},
+    {"return", "RETURN"},
+    {"super", "SUPER"},
+    {"this", "THIS"},
+    {"true", "TRUE"},
+    {"var", "VAR"},
+    {"while", "WHILE"}
+};
+
+// Add this function before the main tokenize logic
+char* check_keyword(char* word) {
+    int keywords_size = sizeof(keywords) / sizeof(keywords[0]);
+    for (int i = 0; i < keywords_size; i++) {
+        if (strcmp(word, keywords[i].word) == 0) {
+            return keywords[i].type;
+        }
+    }
+    return NULL;
+}
+
+
 int main(int argc, char *argv[])
 {
     // Disable output buffering
@@ -276,7 +311,7 @@ int main(int argc, char *argv[])
                     i--; // Adjust index since the loop increments `i`
                     break;
                 }
-                case '_':
+                /*case '_':
                 case 'a' ... 'z':
                 case 'A' ... 'Z':
                 {
@@ -306,7 +341,44 @@ int main(int argc, char *argv[])
                     fprintf(stdout, " null\n");
                     i += size - 1;
                     break;
-                }
+                }*/
+               // Then replace the identifier case with this:
+case '_':
+case 'a' ... 'z':
+case 'A' ... 'Z':
+{
+    int size = 1;
+    for (int j = i + 1; j < strlen(file_contents) + 1; ++j)
+    {
+        if (file_contents[j] == '_' ||
+            (file_contents[j] >= 'a' && file_contents[j] <= 'z') ||
+            (file_contents[j] >= 'A' && file_contents[j] <= 'Z') ||
+            (file_contents[j] >= '0' && file_contents[j] <= '9'))
+        {
+            continue;
+        }
+        else
+        {
+            size = j - i;
+            break;
+        }
+    }
+    char *string = malloc(size + 1);  // Add 1 for null terminator
+    memcpy(string, &file_contents[i], size);
+    string[size] = '\0';  // Null terminate the string
+
+    char* keyword_type = check_keyword(string);
+    if (keyword_type != NULL) {
+        printf("%s %s null\n", keyword_type, string);
+    } else {
+        printf("IDENTIFIER %s null\n", string);
+    }
+
+    free(string);
+    i += size - 1;
+    break;
+}
+
 
                 
 
